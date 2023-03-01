@@ -1,4 +1,4 @@
-package br.com.gomescarlosdev.guests.ui.gallery
+package br.com.gomescarlosdev.guests.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import br.com.gomescarlosdev.guests.databinding.FragmentGalleryBinding
+import br.com.gomescarlosdev.guests.databinding.FragmentPresentsBinding
 
-class GalleryFragment : Fragment() {
+class PresentsFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentPresentsBinding? = null
 
     private val binding get() = _binding!!
 
@@ -20,14 +20,14 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+        val viewModel =
+            ViewModelProvider(this)[PresentsViewModel::class.java]
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentPresentsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textPresents
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
